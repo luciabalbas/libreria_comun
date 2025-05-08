@@ -1,0 +1,58 @@
+<!-- Hereda el html base -->
+{% extends 'core/base.html' %}
+
+<!-- Titulo de la página -->
+{% block title %}Inicio{% endblock %}
+
+<!-- Contenido -->
+{% block content %}
+<div class="container-fluid py-5 text-center p-0 bg-light">
+        <div class="row justify-content-md-center">
+            <div class="col-lg-4 container-fluid container-sm p-0 shadow ">
+                <img src="{% load static %}{% static 'img/inicio_1.jpg' %}" class="img-fluid rounded" alt="" widrth="100%">
+            </div>
+            <div class="col-lg-5 align-self-center p-0">
+                <div class="col-lg-7  p-3">
+                    <div class="container py-3 mx-3 text-center pr-1 border-bottom border-top">
+                        <p class="mb-0 text-dark">Proyecto de Ejemplo hecho con Django para el curso de Python avanzado.</p>
+                        <p class="mb-0 text-dark">El ejemplo es una aplicación web de una librería común entre varios amigos. Contiene un registro de varios libros según qué usuario lo posea.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ultimos Añadidos -->
+    <div class="container-fluid py-5">
+        <h2 class="display-3 text-center">Útimos añadidos</h2>
+        <div class="row mx-3 my-5">
+            <div class="col-lg-3 col-sm-6 d-flex align-items-center justify-content-center">
+                <div class="content text-center">
+                    <img class="my-2" src="https://placehold.co/400x600" width="200" />
+                    <p class="mb-1 fw-bold">Titulo del libro</p>
+                    <p>Autor</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 d-flex align-items-center justify-content-center">
+                <div class="content text-center">
+                    <img class="my-2" src="https://placehold.co/400x600" width="200" />
+                    <p class="mb-1 fw-bold">Titulo del libro</p>
+                    <p>Autor</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 d-flex align-items-center justify-content-center">
+                <div class="content text-center">
+                    <img class="my-2" src="https://placehold.co/400x600" width="200" />
+                    <p class="mb-1 fw-bold">Titulo del libro</p>
+                    <p>Autor</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 d-flex align-items-center justify-content-center">
+                <div class="content text-center">
+                    <img class="my-2" src="https://placehold.co/400x600" width="200" />
+                    <p class="mb-1 fw-bold">Titulo del libro</p>
+                    <p>Autor</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
