@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% block title %}Libros{% endblock %}
+
+{% block content %}
+    <div class="container-fluid py-5">
+        <h2 class="display-3 text-center">Librería</h2>
+        <div class="row mx-3 my-5">
+            {% for book in book_list %}
+            <div class="col-lg-3 col-sm-6 d-flex align-items-center justify-content-center">
+                <div class="content text-center">
+                    <img class="my-2" src="{{book.image.url}}" width="200" />
+                    <p class="mb-1 fw-bold">{{book.title}}</p>
+                    <p>{{book.author}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}

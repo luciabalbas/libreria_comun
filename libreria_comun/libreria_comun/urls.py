@@ -16,8 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from books.urls import books_patterns
+from . import settings
 
 urlpatterns = [
     path('', include('core.urls')),
+    path('books/', include(books_patterns)),
     path('admin/', admin.site.urls),
 ]
+# Para que en el entorno desarrollo encuentre las imgs subidas
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
