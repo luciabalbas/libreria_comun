@@ -8,7 +8,7 @@ class Book(models.Model):
     author = models.CharField(verbose_name='Autor', max_length=100)
     sinopsis = models.TextField(verbose_name='Sinopsis', blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creación')
-    image = models.ImageField(verbose_name='Portada', upload_to='books/')
+    image = models.ImageField(verbose_name='Portada', upload_to='books/', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Libro'
