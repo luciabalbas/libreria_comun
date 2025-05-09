@@ -12,7 +12,7 @@
                             <img class="my-2" src="{{book.image.url}}" width="200" height="300" />
                             <p class="mb-1 fw-bold title">{{book.title}}</p>
                             <p class="mb-1 author">{{book.author}}</p>
-                            <a class='btn btn-outline-light' href="#">Leer más</a>
+                            <a class='btn btn-outline-light' href="{% url 'books:book' book.id book.title|slugify %}">Leer más</a>
                         </div>
                     </a>
                 </div>
