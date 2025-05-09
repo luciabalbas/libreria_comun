@@ -1,14 +1,34 @@
+/* Cambio de letra del texto */
 p, h2 {
     font-family: 'EB Garamond', 'Times New Roman', Times, serif;
 }
+/* Primera letra más grande y con sangría */
 p.text-first::first-letter{
     padding-left: 2em;
     font-size: 1.5rem;
 }
-
+/* Cambio de letra del navbar */
 nav {
     font-family:'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* Transformaciones para la vista de book_list */
+.book-content:hover > * {
+    transition-delay: 0.5s;
+    transition: all 1s ease-out;
+}
+
+.book-content:hover > img {
+    box-shadow: 0px 5px 20px 10px rgba(100, 100, 100, 1);
+}
+.book-content:hover > .title {
+    letter-spacing: 0.1em;
+    
+}
+.book-content:hover > .author {
+    font-style: italic;
+}
+
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
