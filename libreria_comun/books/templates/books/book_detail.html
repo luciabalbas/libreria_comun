@@ -7,7 +7,11 @@
         <h2 class="display-2">{{book.title}}</h2>
         <div class="row justify-content-evenly mb-4">
             <div class="col-lg-4 d-flex justify-content-center align-items-center">
+                {% if book.image != '' %}
                 <img src="{{book.image.url}}" width="350" alt="">
+                {% else %}
+                <img src="{% load static %}{% static 'books/no-portada.svg' %}" width="350" alt="">
+                {% endif %}
             </div>
             <div class="col-lg-5 align-self-center text-start">
                 <p class="fs-4 fw-bold border-bottom">Autor</p>
@@ -21,7 +25,11 @@
                 <p class="fs-5 border-bottom">Pertenece a</p>
                 <p>Lucía</p>
                 </div>
-                <div class="container-fluid text-end">Editar | Borrar</div>
+                {% if request.user.is_staff %}
+                <div class="container-fluid text-end">
+                    | <a href="{% url 'books:update' book.id %}">Editar</a> 
+                    | Borrar</div>
+                {% endif %}
             </div>
         </div>
     </div>

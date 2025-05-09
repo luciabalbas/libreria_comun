@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% block title %}Actualizar Libro{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-5">
+    <div class="container p-3 shadow rounded text-center mb-4">
+        <h2 class="display-2">Actualizar</h2>
+        <div class="formulario p-5">
+            {% if 'ok' in request.GET %}
+            <p style="color: green">
+              Página editada correctamente
+              <a href="{% url 'books:book' book.id book.title|slugify %}">Haz click aquí para ver el resultado</a>
+              {% endif %}
+            <form action="" method="post" enctype="multipart/form-data" >{% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-light mt-3">Actualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

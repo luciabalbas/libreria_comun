@@ -21,7 +21,16 @@ class BookDetailView(DetailView):
 
 @method_decorator(staff_member_required, name='dispatch')
 class BookCreateView(CreateView):
+    """ Vista de Crear un Libro """
     model = Book
     form_class = BookForm
     success_url = reverse_lazy('books:books')
     
+@method_decorator(staff_member_required, name='dispatch')
+class BookUpdate(UpdateView):
+    """ Vista de Editar un Libro """
+    model = Book
+    form_class = BookForm
+    template_name_suffix='_update_form'
+    def get_success_url(self):
+        return reverse_lazy('books:update', args=[self.object.id]) + '?ok'
