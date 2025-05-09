@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% block title %}Borrar Libro{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-5">
+    <div class="container p-3 shadow rounded text-center mb-4">
+        <h2 class="display-2">Eliminar Libro</h2>
+        <div class="formulario p-5">
+            <form action="" method="post" enctype="multipart/form-data" >{% csrf_token %}
+                <p>¿Estás seguro que deseas eliminar "<i>{{object}}</i>"?</p>
+                <button type="submit" class="btn btn-light mt-3">Sí, eliminar libro</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

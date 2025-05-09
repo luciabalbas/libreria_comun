@@ -34,3 +34,9 @@ class BookUpdate(UpdateView):
     template_name_suffix='_update_form'
     def get_success_url(self):
         return reverse_lazy('books:update', args=[self.object.id]) + '?ok'
+    
+@method_decorator(staff_member_required, name='dispatch')
+class BookDelete(DeleteView):
+    """ Vista de Eliminar un Libro """
+    model = Book
+    success_url = reverse_lazy('books:books')
