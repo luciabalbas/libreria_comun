@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+from django.core.validators import validate_image_file_extension
 
 # Create your models here.
 class Book(models.Model):
@@ -8,7 +8,7 @@ class Book(models.Model):
     author = models.CharField(verbose_name='Autor', max_length=100)
     sinopsis = models.TextField(verbose_name='Sinopsis', blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creación')
-    image = models.ImageField(verbose_name='Portada', upload_to='books/', null=True, blank=True)
+    image = models.ImageField(verbose_name='Portada', upload_to='books/', null=True, blank=True, validators=[validate_image_file_extension])
 
     class Meta:
         verbose_name = 'Libro'
