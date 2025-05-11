@@ -16,8 +16,14 @@
             <div class="col-lg-5 align-self-center text-start">
                 <p class="fs-4 fw-bold border-bottom">Autor</p>
                 <p>{{book.author}}</p>
+                {% if book.genres is none %}
                 <p class="fs-4 fw-bold border-bottom">Género</p>
-                <p>Generos</p>
+                <p>
+                {% for genre in book.genres.all %}
+                    <a class="link-offset-2 link-underline link-underline-opacity-10 link-secondary" href="{% url 'books:genre' genre.id %}">{{genre.name}}</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                {% endif %}
                 {% if book.sinopsis != '' %}
                 <p class="fs-4 fw-bold border-bottom">Sinopsis</p>
                 <p>{{book.sinopsis|linebreaks}}</p>

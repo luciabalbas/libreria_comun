@@ -1,12 +1,12 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from .models import Book
+from .models import Book, Genre
 from .forms import BookForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 # Create your views here.
 class BookListView(ListView):
@@ -49,3 +49,10 @@ def search_book(request):
         return render(request, 'books/search_book.html', {'searched': searched, 'books': books})
     else:
         return render(request, 'books/search_book.html', {})
+
+class GenreList(ListView):
+    model = Book
+    def get(self, request, genre_id):
+        genre = get_object_or_404(Genre, id=genre_id)
+        books = get_list_or_404(Book, genres=genre)
+        return render(request, 'books/genre_list.html', {'genre': genre, 'book_list': books})
