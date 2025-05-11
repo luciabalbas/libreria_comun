@@ -11,38 +11,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'home' %}">Libreria Comunal</a>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'home' %}">Inicio</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'books:books' %}">Libros</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'books:create' %}">Añadir Libro</a>
-                </li>
-                {% if request.user %}
-                  <span class="navbar-text px-2 fw-bold">¡Hola, {{user}}!</span>
-                {% else %}
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Acceder</a>
-                </li>
-                {% endif %}
-              </ul>
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
-            </div>
-          </div>
-    </nav>
+      {% block nav %}{% include 'core/navbar.html' %}{% endblock nav %}
     <!-- Header -->
     <header>
         <div class="img">
@@ -53,20 +22,7 @@
      {% block content %}
      {% endblock %}
     <!-- Footer -->
-    <footer class="py-3 my4 bg-body-tertiary">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item">
-                <a href="{% url 'sample' %}" class="nav-link px-2 text-body-secondary">Solicitar plaza</a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'sample' %}" class="nav-link px-2 text-body-secondary">FAQs</a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'sample' %}" class="nav-link px-2 text-body-secondary">Aviso</a>
-            </li>
-        </ul>
-        <p class="text-center text-body-secondary">Derechos reservados</p>
-    </footer>
+    {% block footer %}{% include 'core/footer.html' %}{% endblock %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
