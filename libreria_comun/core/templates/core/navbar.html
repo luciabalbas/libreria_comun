@@ -14,14 +14,20 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'books:books' %}">Libros</a>
                 </li>
+                {% if request.user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'books:create' %}">Añadir Libro</a>
                 </li>
-                {% if request.user %}
                   <span class="navbar-text px-2 fw-bold">¡Hola, {{user}}!</span>
+                  <li class="nav-item">
+                    <form action="{% url 'logout' %}" method="post">
+                      {% csrf_token %}
+                         <button class="nav-link" type="submit">Salir</button>
+                      </form>
+                  </li>
                 {% else %}
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Acceder</a>
+                  <a class="nav-link" href="{% url 'login' %}">Acceder</a>
                 </li>
                 {% endif %}
               </ul>
