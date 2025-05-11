@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import render
 
 # Create your views here.
 class BookListView(ListView):
@@ -40,3 +41,11 @@ class BookDelete(DeleteView):
     """ Vista de Eliminar un Libro """
     model = Book
     success_url = reverse_lazy('books:books')
+
+def search_book(request):
+    if request.method == 'POST':
+        searched = request.POST.get('searched', None)
+        books = Book.objects.filter(title__contains=searched)
+        return render(request, 'books/search_book.html', {'searched': searched, 'books': books})
+    else:
+        return render(request, 'books/search_book.html', {})

@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% block title %}Búsqueda{% endblock %}
+
+{% block content %}
+{% if searched %}
+<div class="container-fluid py-5">
+    <h2 class="display-3 text-center">Libros que contienen <i>'{{searched}}'</i></h2>
+    <div class="row justify-content-center my-5">
+        {% for book in books %}
+        <div class="col-lg-3 col-sm-6 my-4">
+            <div class="container text-center">
+                <div class="book-content">
+                    {% if book.image != '' %}
+                    <img class="my-2" src="{{book.image.url}}" width="200" height="300" />
+                    {% else %}
+                    <img class="my-2" src="{% load static %}{% static 'books/no-portada.svg' %}" width="200" height="300" />
+                    {% endif %}    
+                    <p class="mb-1 fw-bold title">{{book.title}}</p>
+                    <p class="mb-1 author">{{book.author}}</p>
+                    <a class='btn btn-outline-light' href="{% url 'books:book' book.id book.title|slugify %}">Leer más</a>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- PAGINATION -->
+    {% block pagination %}{% include 'books/pagination.html' %}{% endblock %}
+</div>
+</div>
+{% else %}
+    <h2>Te olvidaste de buscar un libro</h2>
+{% endif %}
+{% endblock %}
