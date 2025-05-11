@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="container-fluid p-5">
+    <div class="container p-3 shadow rounded text-center mb-4">
+        <h2 class="display-2">Login</h2>
+        {% if form.errors %}
+            <p style="color:red">Tu usuario y contraseña no coinciden. Inténtelo de nuevo</p>
+        {% endif %}
+        {% if 'register' in request.GET %}
+            <p style="color:green">Usuario registrado correctamente, puede identificarse</p>
+        {% endif %}
+        <div class="formulario p-5">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                 <p>
+            <input type="text" name="username" autofocus maxlength="254" required
+              id="id_username" class="form-control" placeholder="Nombre de usuario"/>
+          </p>
+          <p>
+            <input type="password" name="password" required
+              id="id_password" class="form-control" placeholder="Contraseña"/>
+          </p>
+          <p><input type="submit" class="btn btn-primary btn-block" value="Acceder"></p>
+                {# Assumes you set up the password_reset view in your URLconf #}
+                <p><a href="{% url 'password_reset' %}">¿Se te ha olvidado la contraseña?</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

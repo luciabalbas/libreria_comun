@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # mis apps
     'books',
     'core',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -130,16 +131,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CKEditor
-CKEDITOR_BASEPATH = "/my_static/ckeditor/ckeditor/"
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink'],
-            ['RemoveFormat', 'Source']
-        ]
-    }
-}
+# Auth redirects
+LOGIN_REDIRECT_URL = 'books:books'
+LOGOUT_REDIRECT_URL = 'home'

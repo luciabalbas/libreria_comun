@@ -22,6 +22,8 @@ from . import settings
 urlpatterns = [
     path('', include('core.urls')),
     path('books/', include(books_patterns)),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('registration.urls')),
     path('admin/', admin.site.urls),
 ]
 # Para que en el entorno desarrollo encuentre las imgs subidas

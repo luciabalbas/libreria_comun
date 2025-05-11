@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-5">
+    <div class="container p-3 shadow rounded mb-4">
+        <h2 class="display-2 text-center">Registro</h2>
+        {% if form.errors %}
+            <p style="color:red">Tu usuario y contraseña no coinciden. Inténtelo de nuevo</p>
+        {% endif %}
+        <div class="formulario p-5">
+            <form method="post" action="">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Confirmar" class="btn btn-primary btn-block">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
