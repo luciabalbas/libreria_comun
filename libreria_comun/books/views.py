@@ -16,6 +16,11 @@ class BookListView(ListView):
     context_object_name = 'book_list'
     paginate_by = 4
     template_name = 'books/book_list.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)   
+        # Add in the reports list to context
+        context['genre_list'] = Genre.objects.all()
+        return context
 
 class BookDetailView(DetailView):
     """ Vista detalle de un libro """
@@ -54,6 +59,7 @@ def search_book(request):
 class GenreList(ListView):
     model = Book
     def get(self, request, genre_id):
+        genre_list = get_list_or_404(Genre)
         genre = get_object_or_404(Genre, id=genre_id)
         books = get_list_or_404(Book, genres=genre)
-        return render(request, 'books/genre_list.html', {'genre': genre, 'book_list': books})
+        return render(request, 'books/genre_list.html', {'genre': genre, 'book_list': books, 'genre_list': genre_list})
