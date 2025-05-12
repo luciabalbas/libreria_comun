@@ -25,34 +25,16 @@
     <div class="container-fluid py-5">
         <h2 class="display-3 text-center">Útimos añadidos</h2>
         <div class="row mx-3 my-5">
+            {% for book in last_books %}
             <div class="col-lg-3 col-sm-6 d-flex align-items-center justify-content-center">
                 <div class="content text-center">
-                    <img class="my-2" src="https://placehold.co/400x600" width="200" />
-                    <p class="mb-1 fw-bold">Titulo del libro</p>
-                    <p>Autor</p>
+                    <img class="my-2" src="{{book.image.url}}" width="200" />
+                    <p class="mb-1 fw-bold">{{book.title}}</p>
+                    <p>{{book.author}}</p>
+                    <a class='btn btn-outline-light' href="{% url 'books:book' book.id book.title|slugify %}">Leer más</a>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 d-flex align-items-center justify-content-center">
-                <div class="content text-center">
-                    <img class="my-2" src="https://placehold.co/400x600" width="200" />
-                    <p class="mb-1 fw-bold">Titulo del libro</p>
-                    <p>Autor</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 d-flex align-items-center justify-content-center">
-                <div class="content text-center">
-                    <img class="my-2" src="https://placehold.co/400x600" width="200" />
-                    <p class="mb-1 fw-bold">Titulo del libro</p>
-                    <p>Autor</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 d-flex align-items-center justify-content-center">
-                <div class="content text-center">
-                    <img class="my-2" src="https://placehold.co/400x600" width="200" />
-                    <p class="mb-1 fw-bold">Titulo del libro</p>
-                    <p>Autor</p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
