@@ -5,6 +5,7 @@ from .forms import BookForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 
@@ -20,14 +21,14 @@ class BookDetailView(DetailView):
     """ Vista detalle de un libro """
     model = Book
 
-@method_decorator(staff_member_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class BookCreateView(CreateView):
     """ Vista de Crear un Libro """
     model = Book
     form_class = BookForm
     success_url = reverse_lazy('books:books')
     
-@method_decorator(staff_member_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class BookUpdate(UpdateView):
     """ Vista de Editar un Libro """
     model = Book

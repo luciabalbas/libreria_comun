@@ -16,7 +16,7 @@
             <div class="col-lg-5 align-self-center text-start">
                 <p class="fs-4 fw-bold border-bottom">Autor</p>
                 <p>{{book.author}}</p>
-                {% if book.genres is none %}
+                {% if book.genres.all %}
                 <p class="fs-4 fw-bold border-bottom">Género</p>
                 <p>
                 {% for genre in book.genres.all %}
@@ -35,6 +35,10 @@
                 <div class="container-fluid text-end">
                     | <a href="{% url 'books:update' book.id %}">Editar</a> 
                     | <a href="{% url 'books:delete' book.id %}">Borrar</a>
+                </div>
+                {% elif request.user.is_authenticated %}
+                <div class="container-fluid text-end">
+                    | <a href="{% url 'books:update' book.id %}">Editar</a>
                 </div>
                 {% endif %}
             </div>
