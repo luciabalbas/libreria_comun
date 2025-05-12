@@ -29,5 +29,5 @@ class BookForm(forms.ModelForm):
             ), 
         }
         labels = {
-            'title': '', 'author': '', 'sinopsis': '', 'genres': ''
+            'title': '', 'author': '', 'sinopsis': '', 'genres': '', 'owned': '',
         }
