@@ -1,12 +1,11 @@
 from django import forms
 from .models import Book, Genre
-from django.core.exceptions import ValidationError
-
+from django.contrib.auth.models import User
 class BookForm(forms.ModelForm):
     """ Formulario que posee el modelo Book """
     class Meta:
         model = Book
-        fields = ['title', 'author', 'sinopsis', 'genres', 'image']
+        fields = ['title', 'author', 'sinopsis', 'genres', 'owned', 'image']
         widgets = {
             'title': forms.TextInput(attrs={
                'class':  'form-control p-3',
@@ -23,7 +22,11 @@ class BookForm(forms.ModelForm):
             'genres': forms.SelectMultiple(attrs={
                 'class': 'form-select',
             }, choices = Genre.objects.all()
-            )
+            ),
+            'owned': forms.SelectMultiple(attrs={
+                'class': 'form-select',
+            }, choices=User.objects.all()
+            ), 
         }
         labels = {
             'title': '', 'author': '', 'sinopsis': '', 'genres': ''

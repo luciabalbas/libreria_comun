@@ -29,7 +29,11 @@
                 <p>{{book.sinopsis|linebreaks}}</p>
                 {% endif %}
                 <p class="fs-5 border-bottom">Pertenece a</p>
-                <p>Lucía</p>
+                <p>
+                {% for owner in book.owned.all %}
+                    {{owner}}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
                 </div>
                 {% if request.user.is_staff %}
                 <div class="container-fluid text-end">

@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import validate_image_file_extension
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Genre(models.Model):
@@ -24,6 +25,7 @@ class Book(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creación')
     image = models.ImageField(verbose_name='Portada', upload_to='books/', null=True, blank=True, validators=[validate_image_file_extension])
     genres = models.ManyToManyField(Genre, verbose_name='Género', related_name='get_books', null=True, blank=True)
+    owned = models.ManyToManyField(User, verbose_name='Pertenece', related_name='maps')
 
     class Meta:
         verbose_name = 'Libro'
