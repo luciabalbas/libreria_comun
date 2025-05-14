@@ -6,7 +6,7 @@
 
 <!-- Contenido -->
 {% block content %}
-<div class="container-fluid py-5 text-center p-0 bg-light">
+    <div class="container-fluid py-5 text-center p-0 bg-light">
         <div class="row justify-content-md-center">
             <div class="col-lg-4 container-fluid container-sm p-0 shadow ">
                 <img src="{% load static %}{% static 'img/inicio_1.jpg' %}" class="img-fluid rounded" alt="" widrth="100%">
@@ -26,12 +26,18 @@
         <h2 class="display-3 text-center">Útimos añadidos</h2>
         <div class="row mx-3 my-5">
             {% for book in last_books %}
-            <div class="col-lg-3 col-sm-6 d-flex align-items-center justify-content-center">
-                <div class="content text-center">
-                    <img class="my-2" src="{{book.image.url}}" width="200" />
-                    <p class="mb-1 fw-bold">{{book.title}}</p>
-                    <p>{{book.author}}</p>
-                    <a class='btn btn-outline-light' href="{% url 'books:book' book.id book.title|slugify %}">Leer más</a>
+            <div class="col-lg-3 col-sm-6 my-4">
+                <div class="container text-center">
+                    <div class="book-content">
+                        {% if book.image != '' %}
+                            <img class="my-2" src="{{book.image.url}}" width="200" height="300" />
+                        {% else %}
+                            <img class="my-2" src="{% load static %}{% static 'books/no-portada.svg' %}" width="200" height="300" />
+                        {% endif %}    
+                        <p class="mb-1 fw-bold title">{{book.title}}</p>
+                        <p class="mb-1 author">{{book.author}}</p>
+                        <a class='btn btn-outline-light' href="{% url 'books:book' book.id book.title|slugify %}">Leer más</a>
+                    </div>
                 </div>
             </div>
             {% endfor %}
